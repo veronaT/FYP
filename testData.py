@@ -6,6 +6,7 @@ import struct
 
 def generate(size):
     result = os.urandom(size)
+    print(result)
     return result
 
 
