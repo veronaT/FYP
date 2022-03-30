@@ -23,7 +23,7 @@ goodtxt = """0,File-bytes,Entropy,Chi-square,Mean,Monte-Carlo-Pi,Serial-Correlat
 items = goodtxt.replace("\n", ",").split(",")
 good = {j: float(k) for j, k in zip(items[1:7], items[8:])}
 
-data, counts = readdata("random.dat")
+data, counts = readdata("test/random.dat")
 
 
 def test_size():
