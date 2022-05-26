@@ -49,7 +49,7 @@ class GUI(Frame):
         self.__test_selection_label_frame = LabelFrame(self.master, text="Randomness Testing", padx=5, pady=5)
         self.__test_selection_label_frame.config(font=("Times New Roman", 14))
 
-        self.__test_selection_label_frame.place(x=20, y=135, width=1240, height=380)
+        self.__test_selection_label_frame.place(x=20, y=135, width=1240, height=400)
 
         self.__test_type = ['01. Entropy', '02. Chi Squared', '03. Mean', '04. Monte-Carlo-Pi', '05. Serial-Correlation', '06. Monobits', '07. Runs Test', '08. Long Runs', '09. Continuous Run', '10. Birthday Spacing Test', '11. Poker Test']
 
@@ -65,6 +65,155 @@ class GUI(Frame):
         self.__chb_var = [IntVar(), IntVar(), IntVar(), IntVar(), IntVar(), IntVar(), IntVar(), IntVar(),
                           IntVar(), IntVar(), IntVar()]
 
+        self.__entropy = Label(self.__test_selection_label_frame, text=self.__test_type[0])
+
+        #entropy
+        self.__entropy.place(x=10, y=35)
+        self.__entropy_p_value = StringVar()
+        self.__entropy_p_value_entry = Entry(self.__test_selection_label_frame, textvariable=self.__entropy_p_value)
+        self.__entropy_p_value_entry.config(state=DISABLED)
+        self.__entropy_p_value_entry.place(x=365, y=35, width=500, height=25)
+        self.__entropy_result = StringVar()
+        self.__entropy_result_entry = Entry(self.__test_selection_label_frame, textvariable=self.__entropy_result)
+        self.__entropy_result_entry.config(state=DISABLED)
+        self.__entropy_result_entry.place(x=870, y=35, width=350, height=25)
+        
+        #Chi Squared
+        self.__chiSqaure = Label(self.__test_selection_label_frame, text=self.__test_type[1])
+        self.__chiSqaure.place(x=10, y=65)
+        self.__chiSqaure_p_value = StringVar()
+        self.__chiSqaure_p_value_entry = Entry(self.__test_selection_label_frame, textvariable=self.__chiSqaure_p_value)
+        self.__chiSqaure_p_value_entry.config(state=DISABLED)
+        self.__chiSqaure_p_value_entry.place(x=365, y=65, width=500, height=25)
+        self.__chiSqaure_result = StringVar()
+        self.__chiSqaure_result_entry = Entry(self.__test_selection_label_frame, textvariable=self.__chiSqaure_result)
+        self.__chiSqaure_result_entry.config(state=DISABLED)
+        self.__chiSqaure_result_entry.place(x=870, y=65, width=350, height=25)
+        
+        #mean
+        self.__mean = Label(self.__test_selection_label_frame, text=self.__test_type[2])
+        self.__mean.place(x=10, y=95)
+        self.__mean_p_value = StringVar()
+        self.__mean_p_value_entry = Entry(self.__test_selection_label_frame, textvariable=self.__mean_p_value)
+        self.__mean_p_value_entry.config(state=DISABLED)
+        self.__mean_p_value_entry.place(x=365, y=95, width=500, height=25)
+        self.__mean_result = StringVar()
+        self.__mean_result_entry = Entry(self.__test_selection_label_frame, textvariable=self.__mean_result)
+        self.__mean_result_entry.config(state=DISABLED)
+        self.__mean_result_entry.place(x=870, y=95, width=350, height=25)
+        
+        #Monte-Carlo
+        self.__monteCarlo = Label(self.__test_selection_label_frame, text=self.__test_type[3])
+        self.__monteCarlo.place(x=10, y=125)
+        self.__monteCarlo_p_value = StringVar()
+        self.__monteCarlo_p_value_entry = Entry(self.__test_selection_label_frame, textvariable=self.__monteCarlo_p_value)
+        self.__monteCarlo_p_value_entry.config(state=DISABLED)
+        self.__monteCarlo_p_value_entry.place(x=365, y=125, width=500, height=25)
+        self.__monteCarlo_result = StringVar()
+        self.__monteCarlo_result_entry = Entry(self.__test_selection_label_frame, textvariable=self.__monteCarlo_result)
+        self.__monteCarlo_result_entry.config(state=DISABLED)
+        self.__monteCarlo_result_entry.place(x=870, y=125, width=350, height=25)
+        
+        #Serial Correlation
+        self.__correlation = Label(self.__test_selection_label_frame, text=self.__test_type[4])
+        self.__correlation.place(x=10, y=155)
+        self.__correlation_p_value = StringVar()
+        self.__correlation_p_value_entry = Entry(self.__test_selection_label_frame, textvariable=self.__correlation_p_value)
+        self.__correlation_p_value_entry.config(state=DISABLED)
+        self.__correlation_p_value_entry.place(x=365, y=155, width=500, height=25)
+        self.__correlation_result = StringVar()
+        self.__correlation_result_entry = Entry(self.__test_selection_label_frame, textvariable=self.__correlation_result)
+        self.__correlation_result_entry.config(state=DISABLED)
+        self.__correlation_result_entry.place(x=870, y=155, width=350, height=25)
+
+        #Mono bits
+        self.__monobits = Label(self.__test_selection_label_frame, text=self.__test_type[5])
+        self.__monobits.place(x=10, y=185)
+        self.__monobits_p_value = StringVar()
+        self.__monobits_p_value_entry = Entry(self.__test_selection_label_frame, textvariable=self.__monobits_p_value)
+        self.__monobits_p_value_entry.config(state=DISABLED)
+        self.__monobits_p_value_entry.place(x=365, y=185, width=500, height=25)
+        self.__monobits_result = StringVar()
+        self.__monobits_result_entry = Entry(self.__test_selection_label_frame, textvariable=self.__monobits_result)
+        self.__monobits_result_entry.config(state=DISABLED)
+        self.__monobits_result_entry.place(x=870, y=185, width=350, height=25)
+        
+        #run
+        self.__run = Label(self.__test_selection_label_frame, text=self.__test_type[6])
+        self.__run.place(x=10, y=215)
+        self.__run_p_value = StringVar()
+        self.__run_p_value_entry = Entry(self.__test_selection_label_frame, textvariable=self.__run_p_value)
+        self.__run_p_value_entry.config(state=DISABLED)
+        self.__run_p_value_entry.place(x=365, y=215, width=500, height=25)
+        self.__run_result = StringVar()
+        self.__run_result_entry = Entry(self.__test_selection_label_frame, textvariable=self.__run_result)
+        self.__run_result_entry.config(state=DISABLED)
+        self.__run_result_entry.place(x=870, y=215, width=350, height=25)
+        
+        #longruns
+        self.__longRun = Label(self.__test_selection_label_frame, text=self.__test_type[7])
+        self.__longRun.place(x=10, y=245)
+        self.__longRun_p_value = StringVar()
+        self.__longRun_p_value_entry = Entry(self.__test_selection_label_frame, textvariable=self.__longRun_p_value)
+        self.__longRun_p_value_entry.config(state=DISABLED)
+        self.__longRun_p_value_entry.place(x=365, y=245, width=500, height=25)
+        self.__longRun_result = StringVar()
+        self.__longRun_result_entry = Entry(self.__test_selection_label_frame, textvariable=self.__longRun_result)
+        self.__longRun_result_entry.config(state=DISABLED)
+        self.__longRun_result_entry.place(x=870, y=245, width=350, height=25)
+        
+        #contRun
+        self.__contRun = Label(self.__test_selection_label_frame, text=self.__test_type[8])
+        self.__contRun.place(x=10, y=275)
+        self.__contRun_p_value = StringVar()
+        self.__contRun_p_value_entry = Entry(self.__test_selection_label_frame, textvariable=self.__contRun_p_value)
+        self.__contRun_p_value_entry.config(state=DISABLED)
+        self.__contRun_p_value_entry.place(x=365, y=275, width=500, height=25)
+        self.__contRun_result = StringVar()
+        self.__contRun_result_entry = Entry(self.__test_selection_label_frame, textvariable=self.__contRun_result)
+        self.__contRun_result_entry.config(state=DISABLED)
+        self.__contRun_result_entry.place(x=870, y=275, width=350, height=25)
+        
+        #birthday Spacing test
+        self.__birthday = Label(self.__test_selection_label_frame, text=self.__test_type[9])
+        self.__birthday.place(x=10, y=305)
+        self.__birthday_p_value = StringVar()
+        self.__birthday_p_value_entry = Entry(self.__test_selection_label_frame, textvariable=self.__birthday_p_value)
+        self.__birthday_p_value_entry.config(state=DISABLED)
+        self.__birthday_p_value_entry.place(x=365, y=305, width=500, height=25)
+        self.__birthday_result = StringVar()
+        self.__birthday_result_entry = Entry(self.__test_selection_label_frame, textvariable=self.__birthday_result)
+        self.__birthday_result_entry.config(state=DISABLED)
+        self.__birthday_result_entry.place(x=870, y=305, width=350, height=25)
+        
+        #Poker test
+        self.__poker = Label(self.__test_selection_label_frame, text=self.__test_type[10])
+        self.__poker.place(x=10, y=335)
+        self.__poker_p_value = StringVar()
+        self.__poker_p_value_entry = Entry(self.__test_selection_label_frame, textvariable=self.__poker_p_value)
+        self.__poker_p_value_entry.config(state=DISABLED)
+        self.__poker_p_value_entry.place(x=365, y=335, width=500, height=25)
+        self.__poker_result = StringVar()
+        self.__poker_result_entry = Entry(self.__test_selection_label_frame, textvariable=self.__poker_result)
+        self.__poker_result_entry.config(state=DISABLED)
+        self.__poker_result_entry.place(x=870, y=335, width=350, height=25)
+
+        #run tests button
+        self.__execute_button = Button(self.master, text='Execute Test', command=self.execute)
+        self.__execute_button.config(font=("Times New Roman", 10))
+        self.__execute_button.place(x=20, y=550, width=100, height=30)
+
+        #save to file button
+        self.__save_button = Button(self.master, text='Save to File', command=self.save)
+        self.__save_button.config(font=("Times New Roman", 10))
+        self.__save_button.place(x=125, y=550, width=100, height=30)
+
+
+        #reset button
+        self.__reset_button = Button(self.master, text='Reset', command=self.reset)
+        self.__reset_button.config(font=("Times New Roman", 10))
+        self.__reset_button.place(x=230, y=550, width=100, height=30)
+
     def file_select(self):
         print('File Select')
         file_name = askopenfilename(initialdir=os.getcwd(), title="Choose a file.")
@@ -72,6 +221,15 @@ class GUI(Frame):
         print(self.__file_name)
         if file_name:
             self.__file_name.set(file_name)
+
+    def execute(self):
+        print()
+
+    def save(self):
+        print()
+
+    def reset(self):
+        print()
 
     def exit(self):
         exit(0)
