@@ -168,10 +168,7 @@ class GUI(Frame):
         #contRun
         self.__contRun = Label(self.__test_selection_label_frame, text=self.__test_type[8])
         self.__contRun.place(x=10, y=275)
-        self.__contRun_p_value = StringVar()
-        self.__contRun_p_value_entry = Entry(self.__test_selection_label_frame, textvariable=self.__contRun_p_value)
-        self.__contRun_p_value_entry.config(state=DISABLED)
-        self.__contRun_p_value_entry.place(x=365, y=275, width=500, height=25)
+
         self.__contRun_result = StringVar()
         self.__contRun_result_entry = Entry(self.__test_selection_label_frame, textvariable=self.__contRun_result)
         self.__contRun_result_entry.config(state=DISABLED)
@@ -231,6 +228,7 @@ class GUI(Frame):
         result = batteries.ent(self.__file_name.get())
         self.__entropy_p_value.set(result[0])
         #if result[0]
+
         self.__chiSqaure_p_value.set(result[1])
 
         self.__correlation_p_value.set(result[2])
@@ -240,12 +238,36 @@ class GUI(Frame):
         self.__monteCarlo_p_value.set(result[4])
 
         #returning fips results
-        r, c, i = batteries.fips(self.__file_name.get(), 2, 1000)
-        fipsresults = r
-        fipsstats = c
+        r, c = batteries.fips(self.__file_name.get())
 
-        self.__monobits_p_value.set(fipsresults[0])
+        self.__monobits_p_value.set(c[0])
+        if r[0] is True:
+            self.__monobits_result.set("Passed: Random")
+        else:
+            self.__monobits_result.set("Failed: Not Random")
+            
+        self.__run_p_value.set(c[2])
+        if r[2] is True:
+            self.__run_result.set("Passed: Random")
+        else:
+            self.__run_result.set("Failed: Not Random")
 
+        self.__longRun_p_value.set(c[3])
+        if r[3] is True:
+            self.__longRun_result.set("Passed: Random")
+        else:
+            self.__longRun_result.set("Failed: Not Random")
+
+        if r[4] is True:
+            self.__contRun_result.set("Passed: Random")
+        else:
+            self.__contRun_result.set("Failed: Not Random")
+
+        self.__poker_p_value.set(c[1])
+        if r[1] is True:
+            self.__poker_result.set("Passed: Random")
+        else:
+            self.__poker_result.set("Failed: Not Random")
 
     def save(self):
         print()

@@ -15,44 +15,37 @@ def ent (path):
 
     return res_entropy, res_chi_score, res_serial_correlation, res_p_val_chi, res_monte_carlo
 
-def fips(fn, ver, p):
+def fips(fn):
     res = []
     c = []
 
     fs = os.stat(fn)
 
     with open(fn, 'rb') as seq:
-        params = p
 
-        if fs.st_size/(2500*params) < 1:
-            params = int(fs.st_size/2500)
-
-        for i in range(params):
             stat = []
             r = []
 
             s = seq.read(2500)
 
-            rtmp, stattmp = monobits(s, ver)
+            rtmp, stattmp = monobits(s)
             r.append(rtmp)
             stat.append(stattmp)
 
-            rtmp, stattmp = poker(s, ver)
+            rtmp, stattmp = poker(s)
             r.append(rtmp)
             stat.append(stattmp)
 
-            rtmp, stattmp = run(s, ver)
+            rtmp, stattmp = run(s)
             r.append(rtmp)
             stat.append(stattmp)
 
-            rtmp, stattmp = longruns(s, ver)
+            rtmp, stattmp = longruns(s)
             r.append(rtmp)
             stat.append(stattmp)
 
-            rtmp = contrun(s, ver)
+            rtmp = contrun(s)
             r.append(rtmp)
 
-            res.append(r)
-            c.append(stat)
 
-    return res, c, params
+    return r, stat

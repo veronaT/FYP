@@ -5,10 +5,11 @@ import struct
 """Generates the urandom code based on size specified"""
 
 
-def generatePRNG(size, fileName):
-    with open('test/' + fileName + '.dat', 'wb') as f:
-        f.write(os.urandom(size))
-    f.close()
+def generatePRNG(size, fileName, amount):
+    for i in range(amount):
+        with open('test/' + fileName + str(i) + '.dat', 'wb') as f:
+            f.write(os.urandom(size))
+        f.close()
     return "Successfully created urandom file"
 
 
@@ -49,6 +50,6 @@ amount = int(amount)
 
 if type == 1:
     fileName = input("Name of file: ")
-    print(generatePRNG(size, fileName))
+    print(generatePRNG(size, fileName, amount))
 elif type == 2:
     print(generateFRNG(size, amount))
