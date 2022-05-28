@@ -1,33 +1,27 @@
 from numpy import *
 from bitstring import BitArray
 
-#monobits test as defined in FIPS140-1
-def monobits(s, v):
+#monobits test
+
+def monobits(s):
     res = True
     chkvals = []
     b = BitArray(s)
     c = b.count(True)
 
-    if v == 1:
-        chkvals = [9654, 10346]
-    elif v == 2:
-        chkvals = [9725, 10275]
+    chkvals = [9725, 10275]
 
     if c <chkvals[0] or c>chkvals[1]:
         res = False
 
     return res, c
 
-
-# poker test as defined in FIPS140-1
-def poker(s, v):
+# poker test
+def poker(s):
     res = True
     chkvals = []
 
-    if v == 1:
-        chkvals = [1.03, 57.4]
-    elif v == 2:
-        chkvals = [2.16, 46.17]
+    chkvals = [2.16, 46.17]
 
     b = [0] * 16
     h = ''.join(format(x, '02x') for x in s)
@@ -44,18 +38,16 @@ def poker(s, v):
     return res, fres
 
 
-# runs test as defined in FIPS140-1
-def run(s, v):
+# runs test
+def run(s):
     res = True
     chkval = []
     b = BitArray(s)
     c = [0] * 6
     cnt = 0
 
-    if v == 1:
-        chkval = [2267, 2733, 1079, 1421, 502, 748, 223, 402, 90, 223]
-    elif v == 2:
-        chkval = [2343, 2657, 1135, 1365, 542, 708, 251, 373, 111, 201]
+
+    chkval = [2343, 2657, 1135, 1365, 542, 708, 251, 373, 111, 201]
 
     for i in range(0, len(b) - 1):
         if b[i] == b[i + 1]:
@@ -89,17 +81,15 @@ def run(s, v):
     return res, c
 
 
-# long run test as defined in FIPS140-1	- self evaluates
-def longruns(s, v):
+# long run test
+def longruns(s):
     res = True
     b = BitArray(s)
     c = [0, 0]
     chkval = 0
 
-    if v == 1:
-        chkval = 34
-    elif v == 2:
-        chkval = 26
+
+    chkval = 26
 
     for i in b:
         # print(i)
@@ -119,8 +109,8 @@ def longruns(s, v):
     return res, c
 
 
-# continuous run test - checks for any repeated 16 byte sequence in the input sequence - repetition == failure
-def contrun(s, v):
+# continuous run test
+def contrun(s):
     res = True
     check = s[:16]
     comp = s[16:]
