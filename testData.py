@@ -7,24 +7,23 @@ import struct
 
 def generatePRNG(size, fileName, amount):
     for i in range(amount):
-        with open('test/' + fileName + str(i) + '.dat', 'wb') as f:
+        with open('data/prng/' + fileName + str(i) + '.dat', 'wb') as f:
             f.write(os.urandom(size))
         f.close()
     return "Successfully created urandom file"
 
 
-def generateFRNG(size, amount):
+def generateFRNG(size, fileName, amount):
     p = 0  # probability of the switch flipping
     urand = 0  # random var used to determine whether switch flips in conjunction with p
     value = 0  # a byte generated and potentially appended to the sequence
     fname = "tamperTestData"
 
     for a in range(0, amount):
-        filename = 'test/'+fname + str(a)
 
         for i in range(1, amount):
             p = i / 100
-            f = open(filename + "_" + ".bin", 'wb')
+            f = open('data/frng/' + fileName + str(i) + '.dat', 'wb')
             for j in range(0, size):
                 urand = random.uniform(0.00, 1.00)
 
@@ -40,16 +39,30 @@ def generateFRNG(size, amount):
             f.close()
     return "Successfully created tampered test sequence file"
 
+def generateNRNG(size, fileName, amount):
+    size = int(size / 1000) #amount divided up is set for large files
+    for i in range(amount):
+        with open('data/nrng/' + fileName + str(i) + '.dat', 'wb') as f:
+            first = os.urandom(size)
+            second = os.urandom(size)
+            for i in range (500):
+                f.write(first)
+                f.write(second)
+        f.close()
+    return "Successfully created non-random file"
 
-type = input("Specify what type of data: (1) Pseudo Random Data (2) tampered test sequence: ")
+
+type = input("Specify what type of data: (1) Pseudo Random Data (2) tampered test sequence (3) non-random data: ")
 type = int(type)
-size = input("Size of Urandom file: ")
+size = input("Size of file: ")
 size = int(size)
 amount = input("Amount of files: ")
 amount = int(amount)
+fileName = input("Name of file: ")
 
 if type == 1:
-    fileName = input("Name of file: ")
     print(generatePRNG(size, fileName, amount))
 elif type == 2:
-    print(generateFRNG(size, amount))
+    print(generateFRNG(size, fileName, amount))
+elif type ==3:
+    print(generateNRNG(size, fileName, amount))

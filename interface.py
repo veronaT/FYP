@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter.filedialog import askopenfilename
 import os
+import csv
 
 import batteries
 import ent
@@ -42,9 +43,9 @@ class GUI(Frame):
         self.__file_input_entry.place(x=230, y=5, width=840, height=25)
 
         #File Select
-        self.__file_select_button = Button(self.__input_label_frame, text='Select File', command=self.file_select)
+        self.__file_select_button = Button(self.__input_label_frame, text='Select Directory', command=self.file_select)
         self.__file_select_button.config(font=("Comic Sans MS", 10))
-        self.__file_select_button.place(x=1080, y=5, width=100, height=25)
+        self.__file_select_button.place(x=1080, y=5, width=120, height=25)
 
 
 
@@ -52,9 +53,9 @@ class GUI(Frame):
         self.__test_selection_label_frame = LabelFrame(self.master, text="Randomness Testing", padx=5, pady=5)
         self.__test_selection_label_frame.config(font=("Comic Sans MS", 14))
 
-        self.__test_selection_label_frame.place(x=20, y=135, width=1240, height=400)
+        self.__test_selection_label_frame.place(x=20, y=135, width=1240, height=380)
 
-        self.__test_type = ['01. Entropy', '02. Chi Squared', '03. Mean', '04. Monte-Carlo-Pi', '05. Serial-Correlation', '06. Monobits', '07. Runs Test', '08. Long Runs', '09. Continuous Run', '10. Birthday Spacing Test', '11. Poker Test']
+        self.__test_type = ['01. Entropy', '02. Chi Squared', '03. Mean', '04. Monte-Carlo-Pi', '05. Serial-Correlation', '06. Monobits', '07. Runs Test', '08. Long Runs', '09. Continuous Run', '10. Poker Test']
 
         self.__test_type_label = Label(self.__test_selection_label_frame, text='Test Type', borderwidth=2, relief="groove")
         self.__test_type_label.place(x=10, y=5, width=350, height=25)
@@ -174,51 +175,38 @@ class GUI(Frame):
         self.__contRun_result_entry.config(state=DISABLED)
         self.__contRun_result_entry.place(x=870, y=275, width=350, height=25)
         
-        #birthday Spacing test
-        self.__birthday = Label(self.__test_selection_label_frame, text=self.__test_type[9])
-        self.__birthday.place(x=10, y=305)
-        self.__birthday_p_value = StringVar()
-        self.__birthday_p_value_entry = Entry(self.__test_selection_label_frame, textvariable=self.__birthday_p_value)
-        self.__birthday_p_value_entry.config(state=DISABLED)
-        self.__birthday_p_value_entry.place(x=365, y=305, width=500, height=25)
-        self.__birthday_result = StringVar()
-        self.__birthday_result_entry = Entry(self.__test_selection_label_frame, textvariable=self.__birthday_result)
-        self.__birthday_result_entry.config(state=DISABLED)
-        self.__birthday_result_entry.place(x=870, y=305, width=350, height=25)
-        
         #Poker test
-        self.__poker = Label(self.__test_selection_label_frame, text=self.__test_type[10])
-        self.__poker.place(x=10, y=335)
+        self.__poker = Label(self.__test_selection_label_frame, text=self.__test_type[9])
+        self.__poker.place(x=10, y=305)
         self.__poker_p_value = StringVar()
         self.__poker_p_value_entry = Entry(self.__test_selection_label_frame, textvariable=self.__poker_p_value)
         self.__poker_p_value_entry.config(state=DISABLED)
-        self.__poker_p_value_entry.place(x=365, y=335, width=500, height=25)
+        self.__poker_p_value_entry.place(x=365, y=305, width=500, height=25)
         self.__poker_result = StringVar()
         self.__poker_result_entry = Entry(self.__test_selection_label_frame, textvariable=self.__poker_result)
         self.__poker_result_entry.config(state=DISABLED)
-        self.__poker_result_entry.place(x=870, y=335, width=350, height=25)
+        self.__poker_result_entry.place(x=870, y=305, width=350, height=25)
 
         #run tests button
         self.__execute_button = Button(self.master, text='Execute Test', command=self.execute)
         self.__execute_button.config(font=("Comic Sans MS", 10))
-        self.__execute_button.place(x=20, y=550, width=100, height=30)
+        self.__execute_button.place(x=20, y=540, width=100, height=30)
 
         #save to file button
         self.__save_button = Button(self.master, text='Save to File', command=self.save)
         self.__save_button.config(font=("Comic Sans MS", 10))
-        self.__save_button.place(x=125, y=550, width=100, height=30)
+        self.__save_button.place(x=125, y=540, width=100, height=30)
 
 
         #reset button
         self.__reset_button = Button(self.master, text='Reset', command=self.reset)
         self.__reset_button.config(font=("Comic Sans MS", 10))
-        self.__reset_button.place(x=230, y=550, width=100, height=30)
+        self.__reset_button.place(x=230, y=540, width=100, height=30)
 
     def file_select(self):
         print('File Select')
         file_name = askopenfilename(initialdir=os.getcwd(), title="Choose a file.")
         load = False
-        print(self.__file_name)
         if file_name:
             self.__file_name.set(file_name)
 
@@ -275,8 +263,7 @@ class GUI(Frame):
     def reset(self):
         print()
 
-    def exit(self):
-        exit(0)
+
 
 
 if __name__ == '__main__':
