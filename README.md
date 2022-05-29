@@ -2,6 +2,8 @@ Final Year Project: A MINIMAL SET OF END USER FRIENDLY STATISTICAL TESTS
 
 The goal for the project is to tackle the issue of the lack of reliable and user-friendly statistical testing methods used to measure the randomness of random number generators.
 
+My Final Year Project Report can also be found as a PDF in this folder
+
 HOW TO USE:
 Open the executable named interface.exe and should bring up an interface that looks like this:
 ![image](https://user-images.githubusercontent.com/21173813/170892782-e5cf04e5-dc0d-4431-881e-d6eb76f2f1db.png)
