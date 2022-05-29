@@ -94,10 +94,11 @@ def textout(data, e, chi2, p, d, scc, mc):
     red = (100 * (8 - e)) / 8
     n = len(data)
     print(f"  of this {n} byte file by {red:.0f}%.")
-    print(f"- χ² distribution for {n} samples is {chi2:.2f}, and randomly")
+    print(f"- χ² distribution for {n} samples is {chi2:.2f}, and randomly {p}")
     pp = 100 * p
     print(f"  would exceed this value {pp:.2f}% of the times.")
-    print("  According to the χ² test, this sequence", end=" ")
+    print("  According to the χ² test, this sequence ", end=" ")
+
     if d > 49:
         print("is almost certainly not random")
     elif d > 45:
