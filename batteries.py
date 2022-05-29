@@ -1,5 +1,6 @@
 from ent import readdata, entropy, pearsonchisquare, correlation, pochisq, monte_carlo
 from fips import *
+import math
 from scipy import stats
 import numpy
 
@@ -12,6 +13,7 @@ def ent(path):
     res_chi_score = pearsonchisquare(count)
     res_serial_correlation = correlation(data)
     res_p_val_chi = pochisq(res_chi_score)
+    res_p_val_chi_per = math.fabs(res_p_val_chi * 100 - 50)
     res_monte_carlo = monte_carlo(data)
     res_mean = data.mean()
 
