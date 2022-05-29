@@ -2,7 +2,7 @@ Final Year Project: A MINIMAL SET OF END USER FRIENDLY STATISTICAL TESTS
 
 The goal for the project is to tackle the issue of the lack of reliable and user-friendly statistical testing methods used to measure the randomness of random number generators.
 
-My Final Year Project Report can also be found as a PDF in this folder
+My Final Year Project Report can also be found as a PDF in this folder. Link to github repo is:https://github.com/veronaT/FYP
 
 HOW TO USE:
 Open the executable named interface.exe and should bring up an interface that looks like this:
